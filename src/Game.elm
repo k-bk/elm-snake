@@ -202,13 +202,13 @@ update msg model =
 
                         Arrow Right ->
                             if model.state == Options ChangeSpeed then
-                                ( { model | speed = model.speed + 1 }, Cmd.none )
+                                ( { model | speed = clamp 2 10 (model.speed + 1) }, Cmd.none )
                             else
                                 ( model, Cmd.none )
 
                         Arrow Left ->
                             if model.state == Options ChangeSpeed then
-                                ( { model | speed = model.speed - 1 }, Cmd.none )
+                                ( { model | speed = clamp 2 10 (model.speed - 1) }, Cmd.none )
                             else
                                 ( model, Cmd.none )
 

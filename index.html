@@ -6330,6 +6330,10 @@ var author$project$Game$updateSnake = function (model) {
 			{state: author$project$Game$GameOver}),
 		elm$core$Platform$Cmd$none));
 };
+var elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
+	});
 var author$project$Game$update = F2(
 	function (msg, model) {
 		var _n0 = model.state;
@@ -6433,7 +6437,9 @@ var author$project$Game$update = F2(
 										author$project$Game$Options(author$project$Game$ChangeSpeed)) ? _Utils_Tuple2(
 										_Utils_update(
 											model,
-											{speed: model.speed + 1}),
+											{
+												speed: A3(elm$core$Basics$clamp, 2, 10, model.speed + 1)
+											}),
 										elm$core$Platform$Cmd$none) : _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 								default:
 									var _n9 = key.a;
@@ -6442,7 +6448,9 @@ var author$project$Game$update = F2(
 										author$project$Game$Options(author$project$Game$ChangeSpeed)) ? _Utils_Tuple2(
 										_Utils_update(
 											model,
-											{speed: model.speed - 1}),
+											{
+												speed: A3(elm$core$Basics$clamp, 2, 10, model.speed - 1)
+											}),
 										elm$core$Platform$Cmd$none) : _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 							}
 						case 'Accept':
